@@ -53,7 +53,7 @@ namespace OISB
 
             /// 256 keys on the keyboard
 			DigitalState* mKeys[256];
-			
+
 	};
 }
 

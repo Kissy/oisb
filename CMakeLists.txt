@@ -3,8 +3,6 @@ project(OISB LANGUAGES CXX)
 
 list(APPEND CMAKE_MODULE_PATH $ENV{OGRE_SDK}/CMake)
 
-find_package(OIS REQUIRED)
-
 add_definitions(-D_LIB -D_CRT_SECURE_NO_WARNINGS -DOISB_STATIC_LIB)
 
 add_library(OISB
@@ -30,8 +28,6 @@ add_library(OISB
 target_include_directories(OISB PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
-		PRIVATE
-		${OIS_INCLUDE_DIRS}
         )
 
 target_compile_features(OISB
@@ -40,7 +36,9 @@ target_compile_features(OISB
         )
 
 target_link_libraries(OISB
-		${OIS_LIBRARIES}
+		#${COCOA_LIBRARY}
+		#${IOKIT_LIBRARY}
+		OIS
 		)
 
 install(TARGETS OISB

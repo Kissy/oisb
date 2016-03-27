@@ -28,61 +28,50 @@ restrictions:
 
 #include <sstream>
 
-namespace OISB
-{
-	Keyboard::Keyboard(OIS::Keyboard* keyboard):
-		mKeyboard(keyboard)
-	{
-		for (unsigned int i = 0; i < 256; ++i)
-		{
-			String name = mKeyboard->getAsString(static_cast<OIS::KeyCode>(i));
-			if (name == "")
-			{
-				name = "Unknown";
-			}
+namespace OISB {
 
-            if (!hasState(name))
-			{
-				mKeys[i] = new DigitalState(this, name);
+    Keyboard::Keyboard(OIS::Keyboard* keyboard) :
+            mKeyboard(keyboard) {
+        for (unsigned int i = 0; i < 256; ++i) {
+            std::string name = OIS::KeyCodeNames[static_cast<OIS::KeyCode>(i)];
+            if (name == "") {
+                name = "Unknown";
+            }
+
+            if (!hasState(name)) {
+                mKeys[i] = new DigitalState(this, name);
                 //mKeys[i]->_setScanCode(static_cast<OIS::KeyCode>(i));
-                //mKeys[i]->_setCharCode(
-				addState(mKeys[i]);
-			}
-            else
-			{
+                addState(mKeys[i]);
+            }
+            else {
                 std::stringstream s;
 
                 s << i;
                 String i_str = s.str();
 
-				name += " (" + i_str + ")";
-				mKeys[i] = new DigitalState(this, name);
-				addState(mKeys[i]);
-			}
-		}
-	}
-			
-	Keyboard::~Keyboard()
-	{
-		for (unsigned int i = 0; i < 256; ++i)
-		{
-			removeState(mKeys[i]);
-			delete mKeys[i];
-			mKeys[i] = 0;
-		}
-	}
+                name += " (" + i_str + ")";
+                mKeys[i] = new DigitalState(this, name);
+                addState(mKeys[i]);
+            }
+        }
+    }
 
-	const String& Keyboard::getName() const
-	{
-		static String name = "Keyboard";
-		return name;
-	}
+    Keyboard::~Keyboard() {
+        for (unsigned int i = 0; i < 256; ++i) {
+            removeState(mKeys[i]);
+            delete mKeys[i];
+            mKeys[i] = 0;
+        }
+    }
 
-	void Keyboard::process(Real delta)
-	{
-		for (unsigned int i = 0; i < 256; ++i)
-		{
-			mKeys[i]->_setValue(mKeyboard->isKeyDown(static_cast<OIS::KeyCode>(i)));
-		}
-	}
+    const String& Keyboard::getName() const {
+        static String name = "Keyboard";
+        return name;
+    }
+
+    void Keyboard::process(Real delta) {
+        for (unsigned int i = 0; i < 256; ++i) {
+            mKeys[i]->_setValue(mKeyboard->isKeyDown(static_cast<OIS::KeyCode>(i)));
+        }
+    }
 }

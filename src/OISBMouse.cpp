@@ -39,22 +39,22 @@ namespace OISB
 		mWheel = new AnalogAxisState(this, "Wheel");
 		addState(mWheel);
 
-		mLeftButton = new DigitalState(this, "Left Button");
+		mLeftButton = new DigitalState(this, OIS::MouseButtonNames[OIS::MouseButtonID::MB_Left]);
 		addState(mLeftButton);
-		mRightButton = new DigitalState(this, "Right Button");
+		mRightButton = new DigitalState(this, OIS::MouseButtonNames[OIS::MouseButtonID::MB_Right]);
 		addState(mRightButton);
-		mMiddleButton = new DigitalState(this, "Middle Button");
+		mMiddleButton = new DigitalState(this, OIS::MouseButtonNames[OIS::MouseButtonID::MB_Middle]);
 		addState(mMiddleButton);
 
-		mButton3 = new DigitalState(this, "Button 3");
+		mButton3 = new DigitalState(this, OIS::MouseButtonNames[OIS::MouseButtonID::MB_Button3]);
 		addState(mButton3);
-		mButton4 = new DigitalState(this, "Button 4");
+		mButton4 = new DigitalState(this, OIS::MouseButtonNames[OIS::MouseButtonID::MB_Button4]);
 		addState(mButton4);
-		mButton5 = new DigitalState(this, "Button 5");
+		mButton5 = new DigitalState(this, OIS::MouseButtonNames[OIS::MouseButtonID::MB_Button5]);
 		addState(mButton5);
-		mButton6 = new DigitalState(this, "Button 6");
+		mButton6 = new DigitalState(this, OIS::MouseButtonNames[OIS::MouseButtonID::MB_Button6]);
 		addState(mButton6);
-		mButton7 = new DigitalState(this, "Button 7");
+		mButton7 = new DigitalState(this, OIS::MouseButtonNames[OIS::MouseButtonID::MB_Button7]);
 		addState(mButton7);
 
         notifyScreenResize(1024.0f, 768.0f);
